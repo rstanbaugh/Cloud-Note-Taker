@@ -33,22 +33,32 @@ const getNotes = () =>
     },
   });
 
-const saveNote = (note) =>
-  fetch('/api/notes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(note),
-  });
 
-const deleteNote = (id) =>
-  fetch(`/api/notes/${id}`, {
+const deleteNote = (id) => 
+  fetch(`/api/notes/:${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
+  }) 
+  .then(response => {
+    console.log('response ok?',response.ok)
+    if(response.ok){
+      return response.json()
+    }
+    // console.log('fetch failed while during Post Response')
+    alert('Error: ',response.statusText);
+  })
+  .then(postResponse => {
+    console.log('postResponse:', postResponse);
+  })
+  .then ( () => {
+    console.log('render stuff')
+    getAndRenderNotes();
+    renderActiveNote();
   });
+
+
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -71,7 +81,27 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
+
+
+  fetch('/api/notes', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newNote),
+  })
+  .then(response => {
+    if(response.ok){
+      return response.json()
+    }
+    // console.log('fetch failed while during Post Response')
+    alert('Error: ',response.statusText);
+  })
+  .then(postResponse => {
+    // console.log(postResponse);
+  })
+  .then ( () => {
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -88,8 +118,9 @@ const handleNoteDelete = (e) => {
   if (activeNote.id === noteId) {
     activeNote = {};
   }
-
+  console.log('calling delete')
   deleteNote(noteId).then(() => {
+    console.log('back from delete')
     getAndRenderNotes();
     renderActiveNote();
   });
