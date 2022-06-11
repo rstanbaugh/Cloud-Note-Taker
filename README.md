@@ -1,27 +1,52 @@
-# Note Taker Starter Code
 
-#User Story
+  <h1 align="center">Cloud Note Taker</h1><br/>
+
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br/><br/>
+
+  ## Description
+🔍 A node.js application used to create, store and delete notes.<br/><br/>
+
+![Note Taker](./public/assets/images/cloud-note-taker.png)<br/>
+Deployed live on [heroku](https://salty-anchorage-58170.herokuapp.com/)<br/>
+
+  ## Table of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [User Story](#usage)
+  - [License](#license)
+  - [Contributors](#contributors)
+  - [Testing](#testing)
+  - [Questions](#questions)
+
+  ## Installation
+  `npm install from the project directory` <br/><br/>
+
+  ## User Story
+
+```
 AS A small business owner
 I WANT to be able to write and save notes
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
+```
+
+  ## Software License
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br/>
+  This software is licensed under the "The MIT License" license.
+  https://opensource.org/licenses/MIT <br/><br/>
+
+  ## Contributors
+  Rich Stanbaugh<br/>
+  MSU Bootcamp Staff <br/><br/>
+
+  ## Testing
+  ✏️
+  `npm install jest --save-dev` <br/>
+
+  ## Questions
+  If you  hvae questions, you can:
+  - :eyes: Find me on GitHub: [rstanbaugh@gmail.com](https://github.com/rstanbaugh@gmail.com), or<br />
+  - :email: Email me: rich_bootcamp@icloud.com<br /><br />
+
+  _This README was generated with :heart: by [README-generator](https://github.com/rstanbaugh/README-Generator) :fire: :fire:_
 
 
-#Acceptance Criteria
-OK  GIVEN a note-taking application
-    WHEN I open the Note Taker
-    THEN I am presented with a landing page with a link to a notes page
-
-OK  WHEN I click on the link to the notes page
-    THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-
-OK  WHEN I enter a new note title and the note’s text
-    THEN a Save icon appears in the navigation at the top of the page
-
-OK  WHEN I click on the Save icon
-    THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes
-
-OK  WHEN I click on an existing note in the list in the left-hand column
-    THEN that note appears in the right-hand column
-
-WHEN I click on the Write icon in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
