@@ -34,7 +34,7 @@ const getNotes = () =>
   });
 
 
-const deleteNote = (id) => 
+ async function deleteNote(id) { 
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
@@ -42,15 +42,12 @@ const deleteNote = (id) =>
     },
   }) 
   .then(response => {
-    console.log('response body: ',response.body)
-    console.log('response headers: ',response.headers)
-    console.log('response status text: ',response.statusText)
-    console.log('response from server ok?',response.ok)
+
     if(response.ok){
       // return response.json()
       console.log("HTTP Delete Successful");
     } else {
-      console.log("delete unsuccessful");
+      console.log("HTTP Delete unsuccessful");
     }
   //   alert('Error: ',response.statusText);
   })
@@ -60,13 +57,12 @@ const deleteNote = (id) =>
     console.log('postResponse:', data);
   })
   .then ( () => {
-    console.log('render stuff')
+    console.log('render page again');
     getAndRenderNotes();
     renderActiveNote();
   })
   .catch(error => console.log(error));
-
-
+ }
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -128,7 +124,7 @@ const handleNoteDelete = (e) => {
   }
   console.log('--> handleNoteDelete: calling deleteNote()')
   deleteNote(noteId).then(() => {
-    console.log('back from delete')
+    console.log('render in handleNoteDelete()')
     getAndRenderNotes();
     renderActiveNote();
   });

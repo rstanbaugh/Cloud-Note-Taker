@@ -44,8 +44,9 @@ router.delete('/notes/:id', (req, res) => {
     // const note = deleteNote(req.params.id.replace(':',''), notes)
     const note = deleteNote(req.params.id, notes)
   } else {
-    let err = '404: did not find the target w id = '+req.params.id;
+    let err = '404: did not find note w id = '+req.params.id;
     console.log(err);
+    res.status(404).send(err)
     return err;
   }
   console.log('<-- router.delete returning value(note):',notes)
