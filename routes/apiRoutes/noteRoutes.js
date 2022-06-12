@@ -1,5 +1,5 @@
 const { isNote, createNewNote, validateNote, deleteNote } = require('../../lib/notes');
-const { notes } = require('../../db/notes');
+var { notes } = require('../../db/notes');
 
 const router = require('express').Router();
 
@@ -41,8 +41,7 @@ router.delete('/notes/:id', (req, res) => {
   // make sure target note exists
   if(isNote(req.params.id, notes)){
     // delete it
-    // const note = deleteNote(req.params.id.replace(':',''), notes)
-    const note = deleteNote(req.params.id, notes)
+  notes = deleteNote(req.params.id, notes)
   } else {
     let err = '404: did not find note w id = '+req.params.id;
     console.log(err);
