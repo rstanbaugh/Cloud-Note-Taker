@@ -35,28 +35,36 @@ const getNotes = () =>
 
 
 const deleteNote = (id) => 
-  fetch(`/api/notes/:${id}`, {
+  fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   }) 
   .then(response => {
-    console.log('response ok?',response.ok)
+    console.log('response body: ',response.body)
+    console.log('response headers: ',response.headers)
+    console.log('response status text: ',response.statusText)
+    console.log('response from server ok?',response.ok)
     if(response.ok){
-      return response.json()
+      // return response.json()
+      console.log("HTTP Delete Successful");
+    } else {
+      console.log("delete unsuccessful");
     }
-    // console.log('fetch failed while during Post Response')
-    alert('Error: ',response.statusText);
+  //   alert('Error: ',response.statusText);
   })
-  .then(postResponse => {
-    console.log('postResponse:', postResponse);
+  // .then (response => response.json())
+
+  .then(data => {
+    console.log('postResponse:', data);
   })
   .then ( () => {
     console.log('render stuff')
     getAndRenderNotes();
     renderActiveNote();
-  });
+  })
+  .catch(error => console.log(error));
 
 
 
@@ -118,7 +126,7 @@ const handleNoteDelete = (e) => {
   if (activeNote.id === noteId) {
     activeNote = {};
   }
-  console.log('calling delete')
+  console.log('--> handleNoteDelete: calling deleteNote()')
   deleteNote(noteId).then(() => {
     console.log('back from delete')
     getAndRenderNotes();

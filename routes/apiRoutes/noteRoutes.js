@@ -1,4 +1,4 @@
-const { filterByQuery, findById, createNewNote, validateNote, deleteNote } = require('../../lib/notes');
+const { isNote, createNewNote, validateNote, deleteNote } = require('../../lib/notes');
 const { notes } = require('../../db/notes');
 
 const router = require('express').Router();
@@ -13,7 +13,7 @@ router.get('/notes', (req, res) => {
 });
 
 router.get('/notes/:id', (req, res) => {
-  const result = findById(req.params.id, notes);
+  const result = isNote(req.params.id, notes);
   if(result){
     res.json(result);
   } else {
@@ -36,14 +36,21 @@ router.post('/notes', (req, res) => {
 });
 
 router.delete('/notes/:id', (req, res) => {
-  console.log('calling deleteNote()');
-
-  const note = deleteNote(req.params.id.replace(':',''), notes)
-  console.log('return value(note):',note)
+  console.log('===================');
+  console.log('-->router.delete');
+  // make sure target note exists
+  if(isNote(req.params.id, notes)){
+    // delete it
+    // const note = deleteNote(req.params.id.replace(':',''), notes)
+    const note = deleteNote(req.params.id, notes)
+  } else {
+    let err = '404: did not find the target w id = '+req.params.id;
+    console.log(err);
+    return err;
+  }
+  console.log('<-- router.delete returning value(note):',notes)
   //  delete a note from the json file and teh notes array
-  res.json(note);
-
-
+  res.json(notes);
 });
 
 module.exports = router;
