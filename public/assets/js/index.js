@@ -54,10 +54,10 @@ const getNotes = () =>
   // .then (response => response.json())
 
   .then(data => {
-    console.log('postResponse:', data);
+    // console.log('postResponse:', data);
   })
   .then ( () => {
-    console.log('render page again');
+    // console.log('render page again');
     getAndRenderNotes();
     renderActiveNote();
   })
@@ -122,9 +122,9 @@ const handleNoteDelete = (e) => {
   if (activeNote.id === noteId) {
     activeNote = {};
   }
-  console.log('--> handleNoteDelete: calling deleteNote()')
+  // console.log('--> handleNoteDelete: calling deleteNote()')
   deleteNote(noteId).then(() => {
-    console.log('render in handleNoteDelete()')
+    // console.log('render in handleNoteDelete()')
     getAndRenderNotes();
     renderActiveNote();
   });

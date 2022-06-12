@@ -36,7 +36,7 @@ router.post('/notes', (req, res) => {
 });
 
 router.delete('/notes/:id', (req, res) => {
-  console.log('===================');
+  // console.log('===================');
   console.log('-->router.delete');
   // make sure target note exists
   if(isNote(req.params.id, notes)){
